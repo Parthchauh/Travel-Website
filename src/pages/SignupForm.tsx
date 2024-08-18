@@ -1,8 +1,7 @@
-// D:\Travel-Web\my-travel-app\src\components\SignupFormDemo.tsx
-
+"use client";
 import React from "react";
-import { Label } from "../components/ui/label";
-import { Input } from "../components/ui/input";
+import { Label } from "../app/components/ui/lable";
+import { Input } from "../app/components/ui/input";
 import { cn } from "@/lib/utils";
 import {
   IconBrandGithub,
@@ -10,8 +9,8 @@ import {
   IconBrandOnlyfans,
 } from "@tabler/icons-react";
 
-const SignupFormDemo = () => {
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+export function SignupFormDemo() {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     console.log("Form submitted");
   };
@@ -50,7 +49,7 @@ const SignupFormDemo = () => {
           <Input
             id="twitterpassword"
             placeholder="••••••••"
-            type="twitterpassword"
+            type="password" // corrected type to "password"
           />
         </LabelInputContainer>
 
@@ -99,9 +98,9 @@ const SignupFormDemo = () => {
       </form>
     </div>
   );
-};
+}
 
-const BottomGradient = () => {
+const BottomGradient: React.FC = () => {
   return (
     <>
       <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
@@ -110,12 +109,14 @@ const BottomGradient = () => {
   );
 };
 
-const LabelInputContainer = ({
-  children,
-  className,
-}: {
+interface LabelInputContainerProps {
   children: React.ReactNode;
   className?: string;
+}
+
+const LabelInputContainer: React.FC<LabelInputContainerProps> = ({
+  children,
+  className,
 }) => {
   return (
     <div className={cn("flex flex-col space-y-2 w-full", className)}>
@@ -123,5 +124,3 @@ const LabelInputContainer = ({
     </div>
   );
 };
-
-export default SignupFormDemo;
